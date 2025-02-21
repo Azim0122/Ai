@@ -88,3 +88,33 @@ button:hover{
 #chk:checked ~ .signup label{
 	transform: scale(.6);
 }
+
+
+.auth-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1000;
+}
+
+.auth-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.auth-message.success {
+    background-color: #573b8a; /* Зеленый для успешных сообщений */
+}
+
+.auth-message.error {
+    background-color: #FF5733; /* Красный для ошибок */
+}
+

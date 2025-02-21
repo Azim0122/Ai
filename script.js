@@ -6,15 +6,21 @@ const user = JSON.parse(localStorage.getItem("user")) || {};
 const header__title = document.getElementById("header__title-name");
 const avatar = document.getElementById("userAvatar_1");
 const Logout= document.getElementById("logOut");
+const navbar__logo = document.querySelector(".navbar__logo");
+const user_button = document.querySelector(".user_button");
 
+navbar__logo.addEventListener("click", () => {
+    user_button.classList.toggle("active");
+    
+})
 Logout.addEventListener("click", () => {
     localStorage.removeItem("user");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     localStorage.removeItem("saved-api-chats");
 });
 
 if (user.userName) {
-    header__title.innerHTML = user.userName;
+    header__title.innerHTML = user.userName.slice(0, 12);
 } else {
     header__title.innerHTML = "Гость";
 }
@@ -249,7 +255,7 @@ const handleOutgoingMessage = () => {
     
         <div class="message__content">
             <img class="message__avatar" src="${user.img || 'default-avatar.png'}"  alt="User avatar">
-             <span class="name">${user.userName.slice(0, 1)}:</span>
+             <span class="name">${user.userName.slice(0, 12)}:</span>
             <p class="message__text"></p>
         </div>
 

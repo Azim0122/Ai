@@ -46,6 +46,10 @@ body{
 body.light_mode .name{
     color: var(--text-secondary-color);
 }
+body.light_mode .user_button button{
+    color: var(--text-secondary-color);
+    background-color: var(--secondary-hover-color)
+}
 .name{
     color: var(--text-color);
 }
@@ -68,7 +72,6 @@ body.hide-header .header{
     justify-content: space-between;
     padding: 1rem 2rem;
 }
-
 .navbar__logo{
    width: 45px;
    height: 45px;
@@ -77,29 +80,52 @@ body.hide-header .header{
    align-items: center;
    justify-content: center;
    background-color: var(--primary-color);
-   font-size: 1.5rem;
+   font-size: 1rem;
    cursor: pointer;
    position: relative;
+border: 2px solid var( --secondary-hover-color);
 }
 
-.navbar__logo::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid var(--secondary-color);
-    animation: animate 2s ease-in-out infinite;
-}
 .navbar__logo img{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
+.user_button{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: -50px;
+    z-index: 0;
+    display : none;
+ 
+}
+.user_button.active{
+    display: block;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+.user_button button{
+    padding: 0.5rem;
+    width: 80px;
+    font-size: .8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    border: none;
+    background: var( --secondary-hover-color);
+    color: var( --text-color);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.user_button button:hover{
+    background: var(--secondary-hover-color);
+}
 .navbar__button{
     padding: 0.5rem;
     font-size: 1.5rem;
@@ -205,7 +231,7 @@ body.hide-header .header{
     resize: none;
     font-size: 1rem;
     color: var(--text-secondary-color);
-    padding: 1rem 1.75rem;
+    padding: 1rem 4.9rem 1rem 1.95rem;
     border-radius: 100px;
     background: var( --secondary-hover-color);
     transition: background 0.3s ease;
@@ -255,7 +281,7 @@ body.hide-header .header{
 }
 
 .prompt__form-input:valid ~ #deleteButton{
-    right: 3.5rem;
+    right: 2.5rem;
 }
 
 .prompt__disclaim{
