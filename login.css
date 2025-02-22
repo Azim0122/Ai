@@ -88,33 +88,87 @@ button:hover{
 #chk:checked ~ .signup label{
 	transform: scale(.6);
 }
+.signUpImage{
+	background-color: #e0dede;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
 
+.signUpImage:hover {
+	opacity: 0.8;
+}
 
 .auth-message {
     position: fixed;
-    top: 20px;
+    top: 30px;
     right: 20px;
-    padding: 15px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
     opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    z-index: 1000;
+    transform: translateY(-50px) scale(0.8);
+    transition: all 0.6s ease-out;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-message::before {
+    content: "🔥"; /* Иконка по умолчанию */
+    font-size: 24px;
 }
 
 .auth-message.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 .auth-message.success {
-    background-color: #573b8a; /* Зеленый для успешных сообщений */
+    background: linear-gradient(45deg, #573b8a, #6d44b8);
+    color: #fff;
+    box-shadow: 0px 0px 25px rgba(87, 59, 138, 1);
+}
+
+.auth-message.success::before {
+    content: "✅"; /* Иконка успеха */
 }
 
 .auth-message.error {
-    background-color: #FF5733; /* Красный для ошибок */
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: #fff;
+    box-shadow: 0px 0px 25px rgba(255, 65, 108, 1);
 }
+
+.auth-message.error::before {
+    content: "❌"; /* Иконка ошибки */
+}
+
+@keyframes hideMessage {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-10px) scale(0.9);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.7);
+    }
+}
+
+
+
 

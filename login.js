@@ -23,16 +23,19 @@ function showMessage(text, type) {
     const message = document.getElementById("authMessage");
     message.textContent = text;
     message.className = `auth-message show ${type}`;
-    
+
     setTimeout(() => {
-        message.classList.remove("show");
+        message.style.animation = "hideMessage 0.5s forwards";
+        setTimeout(() => {
+            message.classList.remove("show");
+            message.style.animation = "";
+        }, 500);
     }, 3000);
 }
 
-// Измени `alert()` на `showMessage()`
+// Обновленный код для регистрации и входа:
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const file = document.getElementById("signUpImage").files[0];
     const reader = new FileReader();
 
@@ -48,13 +51,16 @@ signUpForm.addEventListener("submit", (e) => {
             showMessage("Заполните все поля!", "error");
             return;
         } else if (userData.some(user => user.email === newUser.email)) {
-            showMessage("Пользователь с таким email уже существует!", "error");
+            showMessage("Этот email уже используется!", "error");
             return;
         }
 
         userData.push(newUser);
         localStorage.setItem("userData", JSON.stringify(userData));
-        showMessage("Вы успешно зарегистрировались!", "success");
+        showMessage("Вы зарегистрировались!", "success");
+        localStorage.setItem("user", JSON.stringify(newUser));
+        window.location.href = "ai.html";
+
         signUpForm.reset();
     };
 
@@ -67,7 +73,6 @@ signUpForm.addEventListener("submit", (e) => {
 
 logInForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const inputEmail = logInEmail.value.trim();
     const inputPassword = logInPswd.value.trim();
     const user = userData.find(user => user.email === inputEmail);
@@ -84,10 +89,11 @@ logInForm.addEventListener("submit", (e) => {
     
     localStorage.setItem("user", JSON.stringify(user));
 
-    showMessage("Вы успешно вошли!", "success");
+    showMessage("Вход выполнен!", "success");
     logInForm.reset();
     
     setTimeout(() => {
         window.location.href = "ai.html";
-    }, 1000); // Небольшая задержка перед переходом
+    }, 1000);
 });
+
